@@ -1,0 +1,22 @@
+{
+  "name": "com.metalive.sdk",
+  "version": "0.0.2",
+  "displayName": "Metalive",
+  "description": "Metalive Unity SDK",
+  "unity": "2021.1",
+  "dependencies": 
+  {
+    "com.unity.addressables": "1.19.19",
+    "com.unity.render-pipelines.universal": "12.0.0"
+  },
+  "keywords": [
+    "metalive",
+    "awesomepia",
+    "common"
+  ],
+  "author": {
+    "name": "Awesomepia",
+    "email": "awesomepiainfo@gmail.com",
+    "url": "http://www.awesomepia.kr"
+  }
+}
