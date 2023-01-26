@@ -1,16 +1,24 @@
 using UnityEngine;
 
-
-
 [CreateAssetMenu(fileName = "TelescopeData", menuName = "Interactive/TelescopeData", order = int.MaxValue)]
 public class TelescopeData : ScriptableObject
 {
-    [Header("[ Type ]")]
-    [Tooltip("telescope load location")]
-    public InteractiveLocation location = InteractiveLocation.None;
+    // ==================================================
+    [Header("[ Use ]")]
+    [Tooltip("[true] = use / [false] = ready")]
+    public bool isUse = true;
+    // ==================================================
 
+
+
+    // ==================================================
     [Space(10)]
-    [Header("[ Label ]")]    
-    [Tooltip("labeling according to type [local = Application.persistentDataPath path]  [clip = addressable location ] or [url = user https:// location]")]
-    public string label = "";
+    [Header("[ Resources ]")]
+    [Tooltip("[true] = use / [false] = unuse")]
+    public bool isTelescope = true;
+    [Tooltip("Refer to InteractiveBase.cs commant or sdk document")]
+    public InteractiveLocation telescopeLocation = InteractiveLocation.None;
+    [Tooltip("Telescope location type path")]
+    public string telescopePath = "";
+    // ==================================================
 }

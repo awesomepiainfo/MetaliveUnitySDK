@@ -1,19 +1,13 @@
-/*
- * <Label>
- * [Local] = Path -> Application.persistentDataPath
- * [Clip] = Addressable location
- * [Url] = User web hosting
- */
+/// <summary>
+/// [None] = Content in preparation... 
+/// [Local] = Path -> Application.persistentDataPath
+/// [Label] = Addressable location(label)
+/// [Url] = User web hosting
+/// </summary>
 public enum InteractiveLocation
 {
     None,
     Local,
-    Clip,
+    Label,
     Url
-}
-
-public enum InteractivePlay
-{
-    None,
-    Play
 }

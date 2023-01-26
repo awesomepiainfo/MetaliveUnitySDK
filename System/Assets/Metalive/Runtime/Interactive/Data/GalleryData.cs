@@ -14,31 +14,48 @@ public class GalleryWriter
 [CreateAssetMenu(fileName = "GalleryData", menuName = "Interactive/GalleryData", order = int.MaxValue)]
 public class GalleryData : ScriptableObject
 {
-    [Header("[ Information ]")]
+    // ==================================================
+    [Header("[ Use ]")]
+    [Tooltip("[true] = use / [false] = ready ")]
+    public bool isUse = true;
+    // ==================================================
+
+
+
+    // ==================================================
+    [Space(10)]
+    [Header("[ Information ]")]    
     [Tooltip("piece of work name")]
-    public string title = "";
+    public string galleryTitle = "";
     [Tooltip("piece of work category")]
-    public string category = "";
+    public string galleryCategory = "";
     [Tooltip("piece of work website")]
-    public string deeplink = "";
+    public string galleryDeeplink = "";
     [Tooltip("piece of work related links")]
-    public string outlink = "";
+    public string galleryOutlink = "";
 
     [Tooltip("gallery piece of work related writer information - writer name, type(writer, picture, originel), description, related link")]
-    public List<GalleryWriter> writers;
+    public List<GalleryWriter> galleryWriters;
+    // ==================================================
 
+
+
+    // ==================================================
+    // Image    
     [Space(10)]
     [Header("[ Resources ]")]
-    // Image
-    [Tooltip("load piece of work load location")]
-    public InteractiveLocation location = InteractiveLocation.None;
-    [Tooltip("labeling according to type [local = Application.persistentDataPath path]  [clip = addressable location ] or [url = user https:// location]")]
-    public string label = "";
+    [Tooltip("[true] = use / [false] = unuse")]
+    public bool isArt = true;
+    [Tooltip("Refer to InteractiveBase.cs commant or sdk document")]    
+    public InteractiveLocation artLocation = InteractiveLocation.None;
+    [Tooltip("Art location type path")]
+    public string artPath = "";
 
     // Image description
     [TextArea(3, 10)]
     [Tooltip("piece of work related description")]
-    public string content = "";    
+    public string artDescription = "";
+    // ==================================================
 }
 
 
