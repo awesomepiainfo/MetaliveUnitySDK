@@ -44,8 +44,6 @@ public class GalleryData : ScriptableObject
     // Image    
     [Space(10)]
     [Header("[ Resources ]")]
-    [Tooltip("[true] = use / [false] = unuse")]
-    public bool isArt = true;
     [Tooltip("Refer to InteractiveBase.cs commant or sdk document")]    
     public InteractiveLocation artLocation = InteractiveLocation.None;
     [Tooltip("Art location type path")]

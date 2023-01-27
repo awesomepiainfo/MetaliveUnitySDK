@@ -14,8 +14,6 @@ public class TelescopeData : ScriptableObject
     // ==================================================
     [Space(10)]
     [Header("[ Resources ]")]
-    [Tooltip("[true] = use / [false] = unuse")]
-    public bool isTelescope = true;
     [Tooltip("Refer to InteractiveBase.cs commant or sdk document")]
     public InteractiveLocation telescopeLocation = InteractiveLocation.None;
     [Tooltip("Telescope location type path")]

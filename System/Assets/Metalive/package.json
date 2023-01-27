@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "displayName": "Metalive",
   "description": "Metalive Unity SDK",
-  "unity": "2019.1",
+  "unity": "2021.1",
   "unityRelease": "1",
   "dependencies": 
   {
     "com.unity.addressables": "1.19.19",
-    "com.unity.render-pipelines.universal": "12.1.9"
+    "com.unity.render-pipelines.universal": "12.0.0"
   },
   "keywords": [
     "metalive",

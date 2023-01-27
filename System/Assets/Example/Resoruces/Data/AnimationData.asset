@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbf53dbe2ac4a14f88a13c5142075c1, type: 3}
   m_Name: AnimationData
   m_EditorClassIdentifier: 
-  animation: 
-  position: {x: 0, y: 0, z: 0}
-  rotation: {x: 0, y: 0, z: 0}
+  isUse: 1
+  animationLocation: 2
+  animationPath: 
+  isStart: 0
+  startPosition: {x: 0, y: 0, z: 0}
+  startRotation: {x: 0, y: 0, z: 0}
+  isFinish: 0
+  finishPosition: {x: 0, y: 0, z: 0}
+  finishRotation: {x: 0, y: 0, z: 0}

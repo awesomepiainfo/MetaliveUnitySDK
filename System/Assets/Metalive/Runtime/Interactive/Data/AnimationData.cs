@@ -22,10 +22,9 @@ public class AnimationData : ScriptableObject
     // ==================================================
     [Space(10)]
     [Header("[ Resources ]")]
-    [Tooltip("[true] = use / [false] = unuse")]
-    public bool isAnimation = true;
-    [Tooltip("Refer to InteractiveBase.cs commant or sdk document")]
-    public readonly InteractiveLocation animationLocation = InteractiveLocation.Local;
+    [Header("location enum fix = Label")]
+    [Tooltip("Refer to InteractiveBase.cs commant or sdk document")]    
+    public InteractiveLocation animationLocation = InteractiveLocation.Label;
     [Tooltip("play animation path(check animation list)")]
     public string animationPath = "";
     // ==================================================

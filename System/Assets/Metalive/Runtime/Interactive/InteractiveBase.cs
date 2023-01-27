@@ -6,8 +6,8 @@
 /// </summary>
 public enum InteractiveLocation
 {
-    None,
-    Local,
-    Label,
-    Url
+    None = 0,
+    Local = 1,
+    Label = 2,
+    Url = 3
 }
