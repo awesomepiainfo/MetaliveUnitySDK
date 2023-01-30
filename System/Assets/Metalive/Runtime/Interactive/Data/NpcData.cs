@@ -31,16 +31,18 @@ public class NpcData : ScriptableObject
     [Tooltip("Telescope location type path")]
     public string backgroundPath;
 
-    [Space(5)]
+    [Space(7)]
     [Tooltip("Refer to InteractiveBase.cs commant or sdk document")]
     public InteractiveLocation avatarLocation = InteractiveLocation.None;
     [Tooltip("Avatar location type path")]
     public string avatarPath;
 
-    [Space(5)]
+    [Space(7)]
     [Tooltip("Refer to InteractiveBase.cs commant or sdk document")]
     public InteractiveLocation ttsLocation = InteractiveLocation.None;
     [Tooltip("TTS location type path")]
     public string ttsPath;
     // ==================================================
+
+
 }

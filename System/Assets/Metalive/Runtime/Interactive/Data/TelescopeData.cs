@@ -19,4 +19,19 @@ public class TelescopeData : ScriptableObject
     [Tooltip("Telescope location type path")]
     public string telescopePath = "";
     // ==================================================
+
+
+
+    // ==================================================
+    [Space(10)]
+    [Header("[ Reset ]")]
+    [Tooltip("[true] = use / [false] = ready")]
+    public bool isReset = false;
+    [Tooltip("camera reset position")]
+    public Vector3 resetPosition;
+    [Tooltip("camera reset rotation")]
+    public Vector3 resetRotation;
+    [Tooltip("camera reset scale")]
+    public Vector3 resetScale;
+    // ==================================================
 }
