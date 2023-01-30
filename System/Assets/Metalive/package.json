@@ -1,10 +1,9 @@
 {
   "name": "com.metalive.sdk",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "displayName": "Metalive",
   "description": "Metalive Unity SDK",
   "unity": "2021.1",
-  "unityRelease": "1",
   "dependencies": 
   {
     "com.unity.addressables": "1.19.19",
