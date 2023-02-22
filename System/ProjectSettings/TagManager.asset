@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - GameManager
-  - NetworkManager
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -13,15 +11,15 @@ TagManager:
   - 
   - Water
   - UI
-  - Obstruction
-  - Map
-  - Point
-  - Interactive
-  - Player
-  - Enemy
-  - Npc
-  - Riding
-  - Pet
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

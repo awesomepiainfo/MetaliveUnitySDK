@@ -1,6 +1,6 @@
 {
   "name": "com.metalive.sdk",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "displayName": "Metalive",
   "description": "Metalive Unity SDK",
   "unity": "2021.1",
@@ -15,7 +15,7 @@
     "common"
   ],
   "author": {
-    "name": "Awesomepia",
+    "name": "awesomepia",
     "email": "awesomepiainfo@gmail.com",
     "url": "http://www.awesomepia.kr"
   }
