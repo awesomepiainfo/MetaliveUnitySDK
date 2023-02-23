@@ -53,6 +53,7 @@ namespace Metalive
         #region Variable
 
         private MetaliveCategory category;
+        private MetaliveVersion version;
 
         #endregion
 
@@ -107,7 +108,31 @@ namespace Metalive
         // ==================================================
         private void Dashboard()
         {
+            switch(MetaliveEditor.dashboard)
+            {
+                case MetaliveDashboard.Version:
+                    DashboardVersion();
+                    break;
+                case MetaliveDashboard.Label:
 
+                    break;
+                case MetaliveDashboard.Interactive:
+
+                    break;
+                case MetaliveDashboard.Setting:
+
+                    break;
+            }
+        }
+
+        private void DashboardVersion()
+        {
+            if(version == null)
+            {
+                version = CreateInstance<MetaliveVersion>();
+            }
+
+            version.Viewer();
         }
 
         #endregion

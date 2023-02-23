@@ -18,17 +18,18 @@ namespace Metalive
         public void Viewer()
         {
 
-            GUILayout.BeginArea(new Rect(0, 0, 220f, 600f), MetaliveStyle.Area.defalut);
+            GUILayout.BeginArea(new Rect(0, 0, 180f, 600f), MetaliveStyle.Area.defalut);
             {
 
-                GUILayout.BeginArea(new Rect(0, 100f, 220f, 400f));
+                GUILayout.BeginArea(new Rect(0, 80f, 180f, 400f));
                 {
-                    ViewerSetting(MetaliveDashboard.Addressable);
+                    ViewerSetting(MetaliveDashboard.Version);
+                    ViewerSetting(MetaliveDashboard.Label);
                     ViewerSetting(MetaliveDashboard.Interactive);                    
                 }
                 GUILayout.EndArea();
 
-                GUILayout.BeginArea(new Rect(0, 540f, 220f, 40f));
+                GUILayout.BeginArea(new Rect(0, 540f, 180f, 60f));
                 {
                     ViewerSetting(MetaliveDashboard.Setting);
                 }
@@ -42,7 +43,7 @@ namespace Metalive
         {
             EditorGUI.BeginChangeCheck();
 
-            GUILayout.BeginVertical(GUILayout.Width(220), GUILayout.Height(48));
+            GUILayout.BeginVertical(GUILayout.Width(180), GUILayout.Height(48));
             {
                 if (MetaliveEditor.dashboard == dashboard)
                 {

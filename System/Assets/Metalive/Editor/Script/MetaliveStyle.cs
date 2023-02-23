@@ -43,7 +43,7 @@ namespace Metalive
             {
                 fontSize = 12,
                 fontStyle = FontStyle.Bold,
-                alignment = TextAnchor.MiddleLeft,
+                alignment = TextAnchor.MiddleCenter,
             };
 
             public static GUIStyle title = new GUIStyle(GUI.skin.label)
@@ -131,7 +131,7 @@ namespace Metalive
                 fontSize = 14,
                 fontStyle = FontStyle.Bold,
                 alignment = TextAnchor.MiddleLeft,
-                padding = new RectOffset(48, 0, 0, 0),
+                padding = new RectOffset(32, 0, 0, 0),
             };
 
             public static GUIStyle unSelect = new GUIStyle(GUI.skin.button)
@@ -139,7 +139,7 @@ namespace Metalive
                 fontSize = 14,
                 fontStyle = FontStyle.Bold,
                 alignment = TextAnchor.MiddleLeft,
-                padding = new RectOffset(48, 0, 0, 0),
+                padding = new RectOffset(32, 0, 0, 0),
             };
         }
 
