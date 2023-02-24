@@ -6,6 +6,7 @@
 
 #if UNITY_EDITOR
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -32,11 +33,48 @@ namespace Metalive
         #region Method
 
         [MenuItem("Metalive/Dashboard", priority = 0)]
+        public static void Manager()
+        {
+            var setting = MetaliveData.Setting();
+            if(!setting.Equals(0))
+            {                
+                return;
+            }
+
+            if(MetaliveData.setting.project == null)
+            {
+                Project();
+            }
+            else
+            {   
+                if(string.IsNullOrEmpty(MetaliveData.setting.project.name) || string.IsNullOrEmpty(MetaliveData.setting.project.company) || string.IsNullOrEmpty(MetaliveData.setting.project.bundleIndentifier))
+                {
+                    Project();
+                }
+                else
+                {
+                    Dashboard();
+                }                
+            }
+        }
+
+        public static void Project()
+        {
+            var window = EditorWindow.GetWindow<MetaliveProjectWindow>();
+            var x = 280f;
+            var y = 420f;
+
+            window.position = new Rect(100, 100, x, y);
+            window.titleContent = new GUIContent("[ Metalive ] ProjectSetting");
+            window.minSize = window.maxSize = new Vector2(x, y);
+            window.Show();
+        }
+
         public static void Dashboard()
         {
             var window = EditorWindow.GetWindow<MetaliveEditorWindow>();
-            var x = 800f;
-            var y = 600f;
+            var x = 640f;
+            var y = 480f;
 
             window.position = new Rect(100, 100, x, y);
             window.titleContent = new GUIContent("[ Metalive ] Dashboard");
@@ -47,6 +85,128 @@ namespace Metalive
         #endregion
     }
 
+    public class MetaliveProjectWindow : EditorWindow
+    {
+        private string projectName;
+        private string projectCompany;
+        private string projectBundleIndentifier;
+
+        private void Awake()
+        {
+            var setting = MetaliveData.Setting();
+            if (!setting.Equals(0))
+            {
+                return;
+            }
+
+            if(MetaliveData.setting.project != null)
+            {
+                projectName = MetaliveData.setting.project.name;
+                projectCompany = MetaliveData.setting.project.company;
+                projectBundleIndentifier = MetaliveData.setting.project.bundleIndentifier;
+            }
+        }
+
+        private void OnGUI()
+        {
+            GUILayout.BeginArea(new Rect(0f, 0f, 280f, 420f));
+            {
+                GUILayout.BeginArea(new Rect(20f, 40f, 240f, 20f));
+                {
+                    GUILayout.BeginHorizontal();
+                    {
+                        GUILayout.Label("Name   ", MetaliveStyle.Label.defalut, GUILayout.Width(80f), GUILayout.Height(20f));
+                        projectName = GUILayout.TextField(projectName, GUILayout.Width(156f), GUILayout.Height(20f));
+                    }
+                    GUILayout.EndHorizontal();
+                }
+                GUILayout.EndArea();
+
+                GUILayout.BeginArea(new Rect(20f, 68f, 240f, 20f));
+                {
+                    GUILayout.BeginHorizontal();
+                    {
+                        GUILayout.Label("Company   ", MetaliveStyle.Label.defalut, GUILayout.Width(80f), GUILayout.Height(20f));
+                        projectCompany = GUILayout.TextField(projectCompany, GUILayout.Width(156f), GUILayout.Height(20f));
+                    }
+                    GUILayout.EndHorizontal();
+                }
+                GUILayout.EndArea();
+
+                GUILayout.BeginArea(new Rect(20f, 96f, 240f, 20f));
+                {
+                    GUILayout.BeginHorizontal();
+                    {
+                        GUILayout.Label("Indentifier   ", MetaliveStyle.Label.defalut, GUILayout.Width(80f), GUILayout.Height(20f));
+                        projectBundleIndentifier = GUILayout.TextField(projectBundleIndentifier, GUILayout.Width(156f), GUILayout.Height(20f));
+                    }
+                    GUILayout.EndHorizontal();
+                }
+                GUILayout.EndArea();
+
+                GUILayout.BeginArea(new Rect(20f, 148f, 240f, 40f));
+                {
+                    GUILayout.BeginHorizontal();
+                    {
+                        GUILayout.FlexibleSpace();
+                        if(GUILayout.Button("Setting", MetaliveStyle.Button.defalut ,GUILayout.Width(240f), GUILayout.Height(36f)))
+                        {
+                            Setting();
+                        }
+                        GUILayout.FlexibleSpace();
+                    }
+                    GUILayout.EndHorizontal();
+                }
+                GUILayout.EndArea();
+            }
+            GUILayout.EndArea();
+        }
+
+        private void Setting()
+        {
+            var code = MetaliveData.Setting();
+            if (!code.Equals(0))
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(projectName))
+            {
+                Debug.Log("Please write the project name.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(projectCompany))
+            {
+                Debug.Log("Please write the project company.");
+                return;
+            }
+
+            if (MetaliveData.setting.project == null)
+            {
+                MetaliveData.setting.project = new MetaliveProject();
+            }
+
+            MetaliveData.setting.project.name = projectName;
+            MetaliveData.setting.project.company = projectCompany;
+
+            if (string.IsNullOrEmpty(projectBundleIndentifier))
+            {
+                MetaliveData.setting.project.bundleIndentifier = $"com.{projectCompany.ToLower()}.{projectName.ToLower()}";
+            }
+            else
+            {
+                MetaliveData.setting.project.bundleIndentifier = projectBundleIndentifier;
+            }
+
+            EditorUtility.SetDirty(MetaliveData.setting);
+
+
+            MetaliveEditor.Manager();
+            Close();
+        }
+    }
+
     public class MetaliveEditorWindow : EditorWindow
     {
 
@@ -54,6 +214,7 @@ namespace Metalive
 
         private MetaliveCategory category;
         private MetaliveVersion version;
+        private MetaliveSetting setting;
 
         #endregion
 
@@ -120,7 +281,7 @@ namespace Metalive
 
                     break;
                 case MetaliveDashboard.Setting:
-
+                    DashboardSetting();
                     break;
             }
         }
@@ -133,6 +294,16 @@ namespace Metalive
             }
 
             version.Viewer();
+        }
+
+        private void DashboardSetting()
+        {
+            if(setting == null)
+            {
+                setting = CreateInstance<MetaliveSetting>();
+            }
+
+            setting.Viewer();
         }
 
         #endregion

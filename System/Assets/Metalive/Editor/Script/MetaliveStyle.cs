@@ -43,7 +43,7 @@ namespace Metalive
             {
                 fontSize = 12,
                 fontStyle = FontStyle.Bold,
-                alignment = TextAnchor.MiddleCenter,
+                alignment = TextAnchor.MiddleLeft,
             };
 
             public static GUIStyle title = new GUIStyle(GUI.skin.label)

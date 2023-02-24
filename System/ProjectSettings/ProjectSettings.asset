@@ -157,6 +157,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.awesomepia.metalive
     Standalone: com.awesomepia.metalive
+    iPhone: com.awesomepia.metalive
   buildNumber:
     Standalone: 0
     iPhone: 0

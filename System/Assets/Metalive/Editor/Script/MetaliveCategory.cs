@@ -18,10 +18,10 @@ namespace Metalive
         public void Viewer()
         {
 
-            GUILayout.BeginArea(new Rect(0, 0, 180f, 600f), MetaliveStyle.Area.defalut);
+            GUILayout.BeginArea(new Rect(0, 0, 160f, 480f), MetaliveStyle.Area.defalut);
             {
 
-                GUILayout.BeginArea(new Rect(0, 80f, 180f, 400f));
+                GUILayout.BeginArea(new Rect(0, 80f, 160f, 320f));
                 {
                     ViewerSetting(MetaliveDashboard.Version);
                     ViewerSetting(MetaliveDashboard.Label);
@@ -29,7 +29,7 @@ namespace Metalive
                 }
                 GUILayout.EndArea();
 
-                GUILayout.BeginArea(new Rect(0, 540f, 180f, 60f));
+                GUILayout.BeginArea(new Rect(0, 400f, 160f, 60f));
                 {
                     ViewerSetting(MetaliveDashboard.Setting);
                 }
