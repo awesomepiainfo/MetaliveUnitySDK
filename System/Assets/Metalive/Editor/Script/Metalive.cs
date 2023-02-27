@@ -38,10 +38,6 @@ namespace Metalive
                 }
             }
 
-            if (AddressableAssetSettingsDefaultObject.Settings == null)
-            {
-                AddressableAssetSettingsDefaultObject.Settings = AddressableAssetSettings.Create(AddressableAssetSettingsDefaultObject.kDefaultConfigFolder, AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName, true, true);
-            }
         }
         
         #region Variable
@@ -63,7 +59,12 @@ namespace Metalive
                 return;
             }
 
-            if(MetaliveData.setting.project == null)
+            if (AddressableAssetSettingsDefaultObject.Settings == null)
+            {
+                AddressableAssetSettingsDefaultObject.Settings = AddressableAssetSettings.Create(AddressableAssetSettingsDefaultObject.kDefaultConfigFolder, AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName, true, true);
+            }
+
+            if (MetaliveData.setting.project == null)
             {
                 Profile();
             }

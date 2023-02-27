@@ -12,6 +12,8 @@ using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine.Networking;
 using Unity.EditorCoroutines.Editor;
+using System.Linq;
+using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 
 #if UNITY_EDITOR
 
@@ -197,8 +199,6 @@ namespace Metalive
 
         private void Init(string profileName)
         {
-
-
             var profileSetting = AddressableAssetSettingsDefaultObject.Settings;            
             var profileSettingID = profileSetting.profileSettings.GetProfileId(profileName);
             var profilePath = $"https://metalive-asset-resouse.s3.ap-northeast-2.amazonaws.com/admin/asset-resouse/WORLD/{MetaliveData.setting.project.bundleIndentifier}/v{profileName}";
@@ -209,7 +209,7 @@ namespace Metalive
             profileSetting.OverridePlayerVersion = "metalive";
             profileSetting.ContentStateBuildPath = $"Assets/AddressableAssetsData/{profileName}";
             profileSetting.BuildRemoteCatalog = true;
-
+                        
             profileSetting.profileSettings.SetValue(profileSettingID, AddressableAssetSettings.kRemoteBuildPath, profileBuildPath);
             profileSetting.profileSettings.SetValue(profileSettingID, AddressableAssetSettings.kRemoteLoadPath, profileLoadPath);
 
