@@ -1,6 +1,6 @@
 {
   "name": "com.metalive.sdk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "displayName": "Metalive",
   "description": "Metalive Unity SDK",
   "unity": "2021.1",

@@ -63,9 +63,9 @@ namespace Metalive
 
             public static GUIStyle category = new GUIStyle(GUI.skin.label)
             {
-                fontSize = 16,
+                fontSize = 10,
                 fontStyle = FontStyle.Bold,
-                alignment = TextAnchor.MiddleLeft,
+                alignment = TextAnchor.MiddleRight,
             };
         }
 

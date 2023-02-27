@@ -9,19 +9,41 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
+using UnityEditor.AddressableAssets;
+using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Metalive
 {
     public class Metalive
     {
-
+        
     }
 
+    [InitializeOnLoad]
     public class MetaliveEditor : Editor
     {
+        static MetaliveEditor()
+        {
+            var dashboardCode = EditorPrefs.GetString("Dashboard");
+            if (!string.IsNullOrEmpty(dashboardCode))
+            {
+                var enable = Enum.TryParse(dashboardCode, true, out MetaliveDashboard result);
+                if (enable)
+                {
+                    dashboard = result;
+                }
+            }
 
+            if (AddressableAssetSettingsDefaultObject.Settings == null)
+            {
+                AddressableAssetSettingsDefaultObject.Settings = AddressableAssetSettings.Create(AddressableAssetSettingsDefaultObject.kDefaultConfigFolder, AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName, true, true);
+            }
+        }
+        
         #region Variable
 
         public static MetaliveDashboard dashboard { get; set; }
@@ -43,13 +65,13 @@ namespace Metalive
 
             if(MetaliveData.setting.project == null)
             {
-                Project();
+                Profile();
             }
             else
             {   
                 if(string.IsNullOrEmpty(MetaliveData.setting.project.name) || string.IsNullOrEmpty(MetaliveData.setting.project.company) || string.IsNullOrEmpty(MetaliveData.setting.project.bundleIndentifier))
                 {
-                    Project();
+                    Profile();
                 }
                 else
                 {
@@ -58,14 +80,14 @@ namespace Metalive
             }
         }
 
-        public static void Project()
+        public static void Profile()
         {
-            var window = EditorWindow.GetWindow<MetaliveProjectWindow>();
+            var window = EditorWindow.GetWindow<MetaliveProfileWindow>();
             var x = 280f;
             var y = 420f;
 
             window.position = new Rect(100, 100, x, y);
-            window.titleContent = new GUIContent("[ Metalive ] ProjectSetting");
+            window.titleContent = new GUIContent("[ Metalive ] Profile");
             window.minSize = window.maxSize = new Vector2(x, y);
             window.Show();
         }
@@ -85,7 +107,7 @@ namespace Metalive
         #endregion
     }
 
-    public class MetaliveProjectWindow : EditorWindow
+    public class MetaliveProfileWindow : EditorWindow
     {
         private string projectName;
         private string projectCompany;
