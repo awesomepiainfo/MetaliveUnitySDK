@@ -201,7 +201,7 @@ namespace Metalive
         {
             var profileSetting = AddressableAssetSettingsDefaultObject.Settings;            
             var profileSettingID = profileSetting.profileSettings.GetProfileId(profileName);
-            var profilePath = $"https://metalive-asset-resouse.s3.ap-northeast-2.amazonaws.com/admin/asset-resouse/WORLD/{MetaliveData.setting.project.bundleIndentifier}/v{profileName}";
+            var profilePath = $"https://metalive-asset-resouse.s3.ap-northeast-2.amazonaws.com/admin/asset-resouse/WORLD/{MetaliveData.setting.project.bundleIndentifier}/{MetaliveData.setting.project.name.ToLower()}/v{profileName}";
             var profileBuildPath = $"ServerData/{profileName}/[BuildTarget]";
             var profileLoadPath = profilePath + "/" + "[BuildTarget]";
 
