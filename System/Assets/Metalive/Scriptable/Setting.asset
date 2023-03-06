@@ -16,3 +16,4 @@ MonoBehaviour:
     name: test
     company: awesomepia
     bundleIndentifier: com.awesomepia.test
+    code: 000
