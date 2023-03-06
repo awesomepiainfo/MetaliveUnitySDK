@@ -70,7 +70,7 @@ namespace Metalive
             }
             else
             {   
-                if(string.IsNullOrEmpty(MetaliveData.setting.project.name) || string.IsNullOrEmpty(MetaliveData.setting.project.company) || string.IsNullOrEmpty(MetaliveData.setting.project.bundleIndentifier))
+                if(string.IsNullOrEmpty(MetaliveData.setting.project.bundleIndentifier) || string.IsNullOrEmpty(MetaliveData.setting.project.company) || string.IsNullOrEmpty(MetaliveData.setting.project.code))
                 {
                     Profile();
                 }
@@ -113,6 +113,7 @@ namespace Metalive
         private string projectName;
         private string projectCompany;
         private string projectBundleIndentifier;
+        private string projectCode;
 
         private void Awake()
         {
@@ -127,6 +128,7 @@ namespace Metalive
                 projectName = MetaliveData.setting.project.name;
                 projectCompany = MetaliveData.setting.project.company;
                 projectBundleIndentifier = MetaliveData.setting.project.bundleIndentifier;
+                projectCode = MetaliveData.setting.project.code;
             }
         }
 
@@ -138,14 +140,36 @@ namespace Metalive
                 {
                     GUILayout.BeginHorizontal();
                     {
-                        GUILayout.Label("Name   ", MetaliveStyle.Label.defalut, GUILayout.Width(80f), GUILayout.Height(20f));
-                        projectName = GUILayout.TextField(projectName, GUILayout.Width(156f), GUILayout.Height(20f));
+                        GUILayout.Label("Indentifier   ", MetaliveStyle.Label.defalut, GUILayout.Width(80f), GUILayout.Height(20f));
+                        projectBundleIndentifier = GUILayout.TextField(projectBundleIndentifier, GUILayout.Width(156f), GUILayout.Height(20f));
                     }
                     GUILayout.EndHorizontal();
                 }
                 GUILayout.EndArea();
 
                 GUILayout.BeginArea(new Rect(20f, 68f, 240f, 20f));
+                {
+                    GUILayout.BeginHorizontal();
+                    {
+                        GUILayout.Label("Code   ", MetaliveStyle.Label.defalut, GUILayout.Width(80f), GUILayout.Height(20f));
+                        projectCode = GUILayout.TextField(projectCode, GUILayout.Width(156f), GUILayout.Height(20f));
+                    }
+                    GUILayout.EndHorizontal();
+                }
+                GUILayout.EndArea();
+
+                GUILayout.BeginArea(new Rect(20f, 96f, 240f, 20f));
+                {
+                    GUILayout.BeginHorizontal();
+                    {
+                        GUILayout.Label("Name  ", MetaliveStyle.Label.defalut, GUILayout.Width(80f), GUILayout.Height(20f));
+                        projectName = GUILayout.TextField(projectName, GUILayout.Width(156f), GUILayout.Height(20f));
+                    }
+                    GUILayout.EndHorizontal();
+                }
+                GUILayout.EndArea();
+
+                GUILayout.BeginArea(new Rect(20f, 124f, 240f, 20f));
                 {
                     GUILayout.BeginHorizontal();
                     {
@@ -156,18 +180,7 @@ namespace Metalive
                 }
                 GUILayout.EndArea();
 
-                GUILayout.BeginArea(new Rect(20f, 96f, 240f, 20f));
-                {
-                    GUILayout.BeginHorizontal();
-                    {
-                        GUILayout.Label("Indentifier   ", MetaliveStyle.Label.defalut, GUILayout.Width(80f), GUILayout.Height(20f));
-                        projectBundleIndentifier = GUILayout.TextField(projectBundleIndentifier, GUILayout.Width(156f), GUILayout.Height(20f));
-                    }
-                    GUILayout.EndHorizontal();
-                }
-                GUILayout.EndArea();
-
-                GUILayout.BeginArea(new Rect(20f, 148f, 240f, 40f));
+                GUILayout.BeginArea(new Rect(20f, 176f, 240f, 40f));
                 {
                     GUILayout.BeginHorizontal();
                     {
@@ -192,16 +205,16 @@ namespace Metalive
             {
                 return;
             }
-
-            if (string.IsNullOrEmpty(projectName))
+            
+            if(string.IsNullOrEmpty(projectBundleIndentifier))
             {
-                Debug.Log("Please write the project name.");
+                Debug.Log("Please write the project bundleIndentifier.");
                 return;
             }
 
-            if (string.IsNullOrEmpty(projectCompany))
+            if(string.IsNullOrEmpty(projectCode))
             {
-                Debug.Log("Please write the project company.");
+                Debug.Log("Please write the project code.");
                 return;
             }
 
@@ -212,18 +225,10 @@ namespace Metalive
 
             MetaliveData.setting.project.name = projectName;
             MetaliveData.setting.project.company = projectCompany;
-
-            if (string.IsNullOrEmpty(projectBundleIndentifier))
-            {
-                MetaliveData.setting.project.bundleIndentifier = $"com.{projectCompany.ToLower()}.{projectName.ToLower()}";
-            }
-            else
-            {
-                MetaliveData.setting.project.bundleIndentifier = projectBundleIndentifier;
-            }
-
+            MetaliveData.setting.project.bundleIndentifier = projectBundleIndentifier;
+            MetaliveData.setting.project.code = projectCode;
+            
             EditorUtility.SetDirty(MetaliveData.setting);
-
 
             MetaliveEditor.Manager();
             Close();

@@ -20,6 +20,7 @@ namespace Metalive
         public string name;
         public string company;        
         public string bundleIndentifier;
+        public string code;
     }
 
     public class MetaliveSettingData : ScriptableObject
