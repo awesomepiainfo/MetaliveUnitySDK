@@ -50,7 +50,8 @@ namespace MetaliveEditor
 
         #region Method
 
-        [MenuItem("Metalive/Dashboard", priority = 0)]
+        [MenuItem("Metalive/Test", priority = 1)]
+
         public static void Manager()
         {
             var setting = MetaliveData.Setting();

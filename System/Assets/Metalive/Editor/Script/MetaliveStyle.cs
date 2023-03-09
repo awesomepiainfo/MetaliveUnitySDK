@@ -84,7 +84,7 @@ namespace MetaliveEditor
             {
                 fontSize = 12,
                 alignment = TextAnchor.MiddleLeft,
-                padding = new RectOffset(12, 0, 0, 0)
+                padding = new RectOffset(12, 0, 0, 0)                
             };
         }
 
