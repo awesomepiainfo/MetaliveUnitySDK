@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Metalive
+namespace MetaliveEditor
 {
 
     public class MetaliveSetting : EditorWindow

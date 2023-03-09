@@ -10,7 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Metalive
+namespace MetaliveEditor
 {
     public class MetaliveColor
     {

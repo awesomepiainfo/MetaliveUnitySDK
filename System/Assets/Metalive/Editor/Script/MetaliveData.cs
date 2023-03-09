@@ -12,7 +12,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Metalive
+namespace MetaliveEditor
 {
     public class MetaliveData : Editor
     {

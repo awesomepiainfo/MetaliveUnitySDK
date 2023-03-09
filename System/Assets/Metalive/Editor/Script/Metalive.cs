@@ -16,7 +16,7 @@ using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Metalive
+namespace MetaliveEditor
 {
     public class Metalive
     {
@@ -31,7 +31,7 @@ namespace Metalive
             var dashboardCode = EditorPrefs.GetString("Dashboard");
             if (!string.IsNullOrEmpty(dashboardCode))
             {
-                var enable = Enum.TryParse(dashboardCode, true, out MetaliveDashboard result);
+                var enable = Enum.TryParse(dashboardCode, true, out DashboardCategory result);
                 if (enable)
                 {
                     dashboard = result;
@@ -42,7 +42,7 @@ namespace Metalive
         
         #region Variable
 
-        public static MetaliveDashboard dashboard { get; set; }
+        public static DashboardCategory dashboard { get; set; }
 
         #endregion
 
@@ -242,6 +242,7 @@ namespace Metalive
 
         private MetaliveCategory category;
         private MetaliveVersion version;
+        private MetaliveProperty property;
         private MetaliveSetting setting;
 
         #endregion
@@ -299,16 +300,16 @@ namespace Metalive
         {
             switch(MetaliveEditor.dashboard)
             {
-                case MetaliveDashboard.Version:
+                case DashboardCategory.Version:
                     DashboardVersion();
                     break;
-                case MetaliveDashboard.Label:
+                case DashboardCategory.Label:
+                    DashboardLable();
+                    break;
+                case DashboardCategory.Interactive:
 
                     break;
-                case MetaliveDashboard.Interactive:
-
-                    break;
-                case MetaliveDashboard.Setting:
+                case DashboardCategory.Setting:
                     DashboardSetting();
                     break;
             }
@@ -322,6 +323,16 @@ namespace Metalive
             }
 
             version.Viewer();
+        }
+
+        private void DashboardLable()
+        {
+            if(property == null)
+            {
+                property = CreateInstance<MetaliveProperty>();
+            }
+
+            property.Viewer();
         }
 
         private void DashboardSetting()

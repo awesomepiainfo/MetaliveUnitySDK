@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Metalive
+namespace MetaliveEditor
 {
     public class MetaliveCategory : EditorWindow
     {
@@ -23,15 +23,15 @@ namespace Metalive
 
                 GUILayout.BeginArea(new Rect(0, 80f, 160f, 320f));
                 {
-                    ViewerSetting(MetaliveDashboard.Version);
-                    ViewerSetting(MetaliveDashboard.Label);
-                    ViewerSetting(MetaliveDashboard.Interactive);                    
+                    ViewerSetting(DashboardCategory.Version);
+                    ViewerSetting(DashboardCategory.Label);
+                    ViewerSetting(DashboardCategory.Interactive);                    
                 }
                 GUILayout.EndArea();
 
                 GUILayout.BeginArea(new Rect(0, 400f, 160f, 60f));
                 {
-                    ViewerSetting(MetaliveDashboard.Setting);
+                    ViewerSetting(DashboardCategory.Setting);
                 }
                 GUILayout.EndArea();
             }
@@ -39,7 +39,7 @@ namespace Metalive
 
         }
 
-        private void ViewerSetting(MetaliveDashboard dashboard)
+        private void ViewerSetting(DashboardCategory dashboard)
         {
             EditorGUI.BeginChangeCheck();
 

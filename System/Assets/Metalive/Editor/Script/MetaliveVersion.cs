@@ -6,18 +6,16 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 using UnityEngine;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine.Networking;
-using Unity.EditorCoroutines.Editor;
-using System.Linq;
-using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 
 #if UNITY_EDITOR
 
-namespace Metalive
+namespace MetaliveEditor
 {
     public class MetaliveVersion : EditorWindow
     {

@@ -6,15 +6,22 @@
 
 #if UNITY_EDITOR
 
-namespace Metalive
+namespace MetaliveEditor
 {
 
-    public enum MetaliveDashboard
+    public enum DashboardCategory
     {
         Version,
         Interactive,
         Label,
         Setting
+    }
+
+    public enum PropertyCategory
+    {        
+        Addressable,
+        Tag,
+        Layer
     }
 
 }
