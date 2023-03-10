@@ -1,14 +1,14 @@
 /*
  * brunch : phantom
- * update : 2023-03-09
+ * update : 2023-03-10
  * email : chho1365@gmail.com
  */
+
+#if UNITY_EDITOR
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-#if UNITY_EDITOR
 
 namespace Metalive
 {
@@ -16,56 +16,24 @@ namespace Metalive
     public class MetaliveStyle
     {
 
-        #region Label
-
         // ==================================================
-        // [ Label ]
+        // [ Color ]
         // ==================================================
-        internal class Label
+        public static Texture2D Background(int width, int height, Color color)
         {
-            public static GUIStyle defalut = new GUIStyle(GUI.skin.label)
+            Color[] pixels = new Color[width * height];
+
+            for (int i = 0; i < pixels.Length; i++)
             {
-                fontSize = 12,
-                fontStyle = FontStyle.Bold,
-                alignment = TextAnchor.MiddleLeft,              
-            };
+                pixels[i] = color;
+            }
+
+            Texture2D texture = new Texture2D(width, height);
+            texture.SetPixels(pixels);
+            texture.Apply();
+
+            return texture;
         }
-
-        #endregion
-
-
-
-        #region TextField
-        // ==================================================
-        // [ TextField ]
-        // ==================================================
-        internal class TextField
-        {
-            public static GUIStyle defalut = new GUIStyle(GUI.skin.textField)
-            {
-                              
-            };
-        }
-
-        #endregion
-
-
-
-        #region Button
-        // ==================================================
-        // [ Button ]
-        // ==================================================
-        internal class Button
-        {
-            public static GUIStyle defalut = new GUIStyle(GUI.skin.button)
-            {
-                fontSize = 12,
-                fontStyle = FontStyle.Bold,
-                alignment = TextAnchor.MiddleCenter
-            };
-        }
-
-        #endregion
 
     }
 

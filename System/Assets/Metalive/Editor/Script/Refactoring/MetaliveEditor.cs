@@ -1,6 +1,6 @@
 /*
  * brunch : phantom
- * update : 2023-03-09
+ * update : 2023-03-10
  * email : chho1365@gmail.com
  */
 
@@ -12,6 +12,7 @@ using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Metalive
 {
@@ -35,10 +36,14 @@ namespace Metalive
 
         #region Method
 
+        // ==================================================
+        // Menu
+        // ==================================================
+
         [MenuItem("Metalive/Dashboard", priority = 0)]
         public static void Manager()
         {
-            if(MetaliveSetting.IsAccount)
+            if(Metalive.IsAccount)
             {                
                 Dashboard();
             }
@@ -48,6 +53,10 @@ namespace Metalive
             }
         }
 
+
+        // ==================================================
+        // [ Profile ]
+        // ==================================================
         public static void Profile()
         {
             var window = EditorWindow.GetWindow<MetaliveProfile>();
@@ -60,19 +69,14 @@ namespace Metalive
             window.Show();
         }
 
+
+        // ==================================================
+        // [ Dashboard ]
+        // ==================================================
         public static void Dashboard()
         {
-            if(MetaliveSetting.IsAddressable == false)
-            {
-                var redirect = MetaliveSetting.AddressableInit();
-                if(redirect.Equals(1000) == false)
-                {
-                    return;
-                }
-            }
-
             var window = EditorWindow.GetWindow<MetaliveDashboard>();
-            var x = 640f;
+            var x = 720f;
             var y = 480f;
 
             window.position = new Rect(100, 100, x, y);
