@@ -1,12 +1,11 @@
 /*
  * brunch : phantom
- * update : 2023-03-10
+ * update : 2023-03-13
  * email : chho1365@gmail.com
  */
 
 #if UNITY_EDITOR
 
-using MetaliveEditor;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.EditorCoroutines.Editor;
@@ -64,7 +63,7 @@ namespace Metalive
             };
 
 
-            // [ Layout ]
+            // [ Layout ]                                     
             GUILayout.BeginArea(new Rect(200f, 20f, 140f, 440f), area);
             {
                 GUILayout.BeginArea(new Rect(10f, 20f, 120f, 320f));
@@ -100,12 +99,12 @@ namespace Metalive
                         GUILayout.FlexibleSpace();
                         if (GUILayout.Button("Save", button, GUILayout.Width(76f), GUILayout.Height(20f)))
                         {
-
+                            Save();
                         }
 
                         if (GUILayout.Button("Refresh", button, GUILayout.Width(76f), GUILayout.Height(20f)))
                         {
-
+                            Refresh();
                         }
 
                         if (GUILayout.Button("---", button, GUILayout.Width(76f), GUILayout.Height(20f)))
@@ -128,72 +127,72 @@ namespace Metalive
 
             GUILayout.BeginArea(new Rect(360f, 80f, 340f, 360f), area);
             {
-                GUILayout.BeginArea(new Rect(20f, 20f, 60f, 20f));
+                // Version
+                GUILayout.BeginArea(new Rect(20f, 20f, 300f, 80f));
                 {
-                    GUILayout.Label("Version", label, GUILayout.Width(80f), GUILayout.Height(20f));
+                    GUILayout.BeginArea(new Rect(0f, 0f, 80f, 20f));
+                    {
+                        GUILayout.Label("Version", label, GUILayout.Width(80f), GUILayout.Height(20f));
+                    }
+                    GUILayout.EndArea();
+                    GUILayout.BeginArea(new Rect(80f, 0f, 220f, 20f));
+                    {
+                        versionOverride = GUILayout.TextField(versionOverride, GUILayout.Width(220f), GUILayout.Height(20f));
+                    }
+                    GUILayout.EndArea();
+
+                    GUILayout.BeginArea(new Rect(176f, 24f, 60f, 20f));
+                    {
+                        if (GUILayout.Button("Export", button, GUILayout.Width(60f), GUILayout.Height(20f)))
+                        {
+                            Export();
+                        }
+                    }
+                    GUILayout.EndArea();
+                    GUILayout.BeginArea(new Rect(240f, 24f, 60f, 20f));
+                    {
+                        if (GUILayout.Button("Clean", button, GUILayout.Width(60f), GUILayout.Height(20f)))
+                        {
+                            Clean();
+                        }
+                    }
+                    GUILayout.EndArea();
                 }
-                GUILayout.EndArea();
-                GUILayout.BeginArea(new Rect(100f, 20f, 220f, 20f));
+                GUILayout.EndArea();                               
+
+                GUILayout.BeginArea(new Rect(20f, 80f, 240f, 60f));
                 {
-                    versionOverride = GUILayout.TextField(versionOverride, GUILayout.Width(220f), GUILayout.Height(20f));
+                    GUILayout.BeginArea(new Rect(0f, 20f, 60f, 20f));
+                    {
+                        GUILayout.Label("Connect", label, GUILayout.Width(60f), GUILayout.Height(20f));
+                    }
+                    GUILayout.EndArea();
+
+                    GUILayout.BeginArea(new Rect(80f, 20f, 220f, 60f));
+                    {
+                        if (versionAndroid)
+                        {
+                            GUILayout.Label("Android : connect");
+                        }
+                        else
+                        {
+                            GUILayout.Label("Android : disconnect");
+                        }
+
+                        if (versioniOS)
+                        {
+                            GUILayout.Label("iOS : connect");
+                        }
+                        else
+                        {
+                            GUILayout.Label("iOS : disconnect");
+                        }
+                    }
+                    GUILayout.EndArea();
                 }
                 GUILayout.EndArea();
             }
             GUILayout.EndArea();
-
-            GUILayout.BeginArea(new Rect(360f, 104f, 340f, 80f));
-            {
-                GUILayout.BeginArea(new Rect(100f, 20f, 220f, 20f));
-                {
-                    if (GUILayout.Button("Export", button, GUILayout.Width(220f), GUILayout.Height(20f)))
-                    {
-                        Export();
-                    }
-                }
-                GUILayout.EndArea();
-                GUILayout.BeginArea(new Rect(100f, 42f, 220f, 20f));
-                {
-                    if (GUILayout.Button("Clean", button, GUILayout.Width(220f), GUILayout.Height(20f)))
-                    {
-                        Clean();
-                    }
-                }
-                GUILayout.EndArea();                
-            }
-            GUILayout.EndArea();
-
-            GUILayout.BeginArea(new Rect(360f, 180f, 240f, 60f));
-            {
-                GUILayout.BeginArea(new Rect(20f, 20f, 60f, 20f));
-                {
-                    GUILayout.Label("Connect", label, GUILayout.Width(80f), GUILayout.Height(20f));
-                }
-                GUILayout.EndArea();
-
-                GUILayout.BeginArea(new Rect(100f, 20f, 220f, 60f));
-                {
-                    if(versionAndroid)
-                    {
-                        GUILayout.Label("Android : connect");
-                    }
-                    else
-                    {
-                        GUILayout.Label("Android : disconnect");
-                    }
-
-                    if(versioniOS)
-                    {
-                        GUILayout.Label("iOS : connect");
-                    }
-                    else
-                    {
-                        GUILayout.Label("iOS : disconnect");
-                    }
-                }
-                GUILayout.EndArea();
-            }
-            GUILayout.EndArea();
-
 
         }
 
@@ -203,16 +202,44 @@ namespace Metalive
         // ==================================================
         private void Version()
         {
+            GUIStyle normal = new GUIStyle(GUI.skin.button)
+            {                
+                alignment = TextAnchor.MiddleCenter,                
+                normal = new GUIStyleState()
+                {
+                    textColor = Color.gray,                    
+                }
+            };
+
+            GUIStyle click = new GUIStyle(GUI.skin.button)
+            {                
+                alignment = TextAnchor.MiddleCenter,                
+                normal = new GUIStyleState()
+                {
+                    textColor = Color.white,                    
+                }
+            };
+
             var profile = AddressableAssetSettingsDefaultObject.Settings.profileSettings;
             var profileList = profile.GetAllProfileNames();
             for(int i = 1; i < profileList.Count; i++) 
             {
                 GUILayout.BeginHorizontal();
                 {
-                    if (GUILayout.Button(profileList[i]))
+                    if(versionOverride == profileList[i])
                     {
-                        Setting(profileList[i]);
+                        if (GUILayout.Button(profileList[i], click))
+                        {
+                            Setting(profileList[i]);
+                        }
                     }
+                    else
+                    {
+                        if (GUILayout.Button(profileList[i], normal))
+                        {
+                            Setting(profileList[i]);
+                        }
+                    }                    
                 }
                 GUILayout.EndHorizontal();
             }            
@@ -313,7 +340,38 @@ namespace Metalive
                 versionAndroid = false;
                 versioniOS = false;
 
-                MetaliveDebug.Message("1001", "Version remove complete");
+                MetaliveDebug.Message("1000", "Version remove complete");
+            }
+        }
+
+        private void Save()
+        {
+            var setting = AddressableAssetSettingsDefaultObject.Settings.profileSettings;
+            if(string.IsNullOrEmpty(setting.GetProfileName(versionID)))
+            {
+                MetaliveDebug.Message("1001", "Version does not exists.");
+            }
+            else
+            {
+                setting.RenameProfile(versionID, versionOverride);
+                EditorUtility.SetDirty(AddressableAssetSettingsDefaultObject.Settings);
+
+                Setting(versionOverride);
+                MetaliveDebug.Message("1000", "Version save complete");
+            }
+        }
+
+        private void Refresh()
+        {
+            var setting = AddressableAssetSettingsDefaultObject.Settings.profileSettings;
+            if (string.IsNullOrEmpty(setting.GetProfileName(versionID)))
+            {
+                MetaliveDebug.Message("1001", "Version does not exists.");
+            }
+            else
+            {
+                versionOverride = setting.GetProfileName(versionID);
+                Setting(versionOverride);
             }
         }
 

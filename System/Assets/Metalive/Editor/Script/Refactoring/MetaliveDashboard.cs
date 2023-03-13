@@ -22,6 +22,7 @@ namespace Metalive
 
         private DashboardCategory category = DashboardCategory.Basic;
         private MetaliveVersion version;
+        private MetaliveInstall install;
         private MetaliveSetting setting;
 
         #endregion
@@ -104,7 +105,7 @@ namespace Metalive
             // ==================================================
             // [ Style ]
             // ==================================================
-            GUIStyle normal = new GUIStyle()
+            GUIStyle normal = new GUIStyle(GUI.skin.button)
             {
                 fontSize = 14,
                 fontStyle = FontStyle.Bold,
@@ -117,7 +118,7 @@ namespace Metalive
                 }
             };
 
-            GUIStyle click = new GUIStyle()
+            GUIStyle click = new GUIStyle(GUI.skin.button)
             {
                 fontSize = 14,
                 fontStyle = FontStyle.Bold,
@@ -199,7 +200,11 @@ namespace Metalive
 
         private void InstallViewer()
         {
-
+            if(install == null)
+            {
+                install = CreateInstance<MetaliveInstall>();
+            }
+            install.Viewer();
         }
 
         private void SettingViewer()

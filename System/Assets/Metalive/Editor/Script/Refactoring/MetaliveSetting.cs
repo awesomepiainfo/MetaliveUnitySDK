@@ -1,6 +1,6 @@
 /*
  * brunch : phantom
- * update : 2023-03-10
+ * update : 2023-03-13
  * email : chho1365@gmail.com
  */
 
@@ -34,7 +34,7 @@ namespace Metalive
 
          
             // [ Layout ]
-            GUILayout.BeginArea(new Rect(200f, 40f, 440f, 40f));
+            GUILayout.BeginArea(new Rect(200f, 20f, 440f, 40f));
             {
                 if (GUILayout.Button("Profile", button, GUILayout.Width(80f), GUILayout.Height(32f)))
                 {
